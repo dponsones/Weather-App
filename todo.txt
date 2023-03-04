@@ -1,0 +1,8 @@
+initialize button - DONE
+click a button to add the city to the list - DONE
+show list of cities on screen
+save the list to localStorage when we change it
+load our saved list when we open page
+click button to fetch weather info for city
+show weather of city with icon and humidty etc
+show 5 day forecast
