@@ -1,21 +1,31 @@
 var form =document.querySelector('form');
-var cityList = [];
-var cityHTML = document.getElementById('city-list');
+let cityList = [];
 
+function saveCity () {
+  console.log("Saved cities")
+}
+
+// updates the search history
 function updateCityList() {
   console.log("updated jokes list");
-  const cityName = 
-  for (var index = 0; index < cityList.length; index++) {
-   
-  }
-  
+  for (var i = 0; i< cityList.length; i++) {
+    var cityHTML = document.getElementById('city-list');
+    var cityHTMLText =document.createElement("p");
+    var cityText = cityList[i];
+    
+    cityHTML.append(cityHTMLText);
+    cityHTMLText.textContent =cityText;
+    document.querySelector('form').reset();
+  };
+ 
 };
 
 // adds city input to array list
 function addNewCity() {
   cityList.push(newCity);
   console.log("city list", cityList);
-  updateCityList();
+  updateCityList()
+  
 };
 
 // initialize form button
