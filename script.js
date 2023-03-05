@@ -1,31 +1,36 @@
 var form =document.querySelector('form');
 let cityList = [];
-var cityHTMLText =document.createElement("p");
+let cityHTMLText =document.createElement("p");
+var cityHTML = document.getElementById('city-list');
 
 // saves to local storage
 function saveCity () {
   console.log("Saved cities");
   localStorage.setItem('city', JSON.stringify(cityList));
-  loadCities()
 };
 
-// load on to page from local storage
+// get from local storage load to page
 function loadCities () {
   console.log("loaded cities", cityList);
-  let updatedCityList = JSON.parse(localStorage.getItem('city'));
-  cityHTMLText.textContent = updatedCityList;
+  
+  var updatedCityList = JSON.parse(localStorage.getItem('city'));
+
+  for (let i = 0; i < updatedCityList.length; i++) {
+    var city = updatedCityList[i];
+    var cityHTMLText = document.createElement("p");
+    cityHTMLText.textContent = city;
+    cityHTML.append(cityHTMLText);
+  }
 };
 
 // updates the search history
 function updateCityList() {
-  console.log("updated jokes list");
-    var cityHTML = document.getElementById('city-list');
-    var cityHTMLText =document.createElement("p");
+  console.log("updated city list");
     var cityText = newCity;
-    
     cityHTML.append(cityHTMLText);
     cityHTMLText.textContent =cityText;
     document.querySelector('form').reset();
+
     saveCity();
 };
 
@@ -39,12 +44,12 @@ function addNewCity() {
 
 // initialize form button
 function initListeners (event) {
-    event.preventDefault();
-    console.log("form-submit");
-   
-   newCity = document.getElementById('new-city').value;
-   console.log(newCity);
+  event.preventDefault();
+    console.log("form-submit");  
+    newCity = document.getElementById('new-city').value;
+    console.log(newCity);
   
    addNewCity();
 };
 form.addEventListener('submit', initListeners);
+loadCities();
