@@ -8,3 +8,9 @@ header {
 #city-list h2 {
   font-size: 17px;
 }
+
+.forecast-item {
+  display: block;
+  background-color: burlywood;
+  width: auto;
+}

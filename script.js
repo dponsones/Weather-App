@@ -3,11 +3,11 @@ var cityList = [];
 var cityHTML = document.getElementById('city-list');
 var cityHTMLText = document.createElement("p");
 var currentWeather = document.getElementById('current-city');
-var forecast = document.getElementById('5-day-forecast');
+var forecastDisplay = document.getElementById('5-day-forecast');
 var submitButton = document.getElementById('submit-button');
 var APIKey = 'e3280890f73c484ecc8bb0d44ffb9ee0';
 
-
+loadCities();
 
 // saves to local storage
 function saveCity() {
@@ -38,7 +38,7 @@ function updateCityList() {
   cityHTMLText.textContent = cityText;
   document.querySelector('form').reset();
   saveCity();
-
+  getWeatherData(newCity);
 };
 
 // adds city input to array list
@@ -97,25 +97,50 @@ function getForecastData(lat, lon) {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
+      console.log('forecast data',data);
+      displayForecast(data)
     });
 }
+// display forecast data to DOM
 
-// get forecast data
-function getForecastData(lat, lon) {
-  var forecastURL = 'https://api.openweathermap.org/data/2.5/forecast?lat=' + lat + '&lon=' + lon + '&exclude=current,minutely,hourly&appid=' + APIKey;
-  fetch(forecastURL)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      console.log(data);
-    });
+function displayForecast(data) {
+  var forecastDisplay = document.getElementById('5-day-forecast');
+
+  // Clear previous forecast data
+  forecastDisplay.innerHTML = '';
+
+  // Loop through each forecast item
+  for (let i = 0; i < 5; i++) {
+    var forecast = data.list[i];
+    var date = new Date(forecast.dt_txt);
+    var icon = forecast.weather[0].icon;
+    var temp = forecast.main.temp;
+    var wind = forecast.wind.speed + " m/s";
+    var humidity = forecast.main.humidity + "%";
+
+    // Create HTML elements for the forecast item
+    var forecastItem = document.createElement('div');
+    forecastItem.className = 'forecast-item';
+    var forecastDate = document.createElement('p');
+    forecastDate.textContent = date.toLocaleDateString();
+    var forecastIcon = document.createElement('img');
+    forecastIcon.src = 'https://openweathermap.org/img/wn/' + icon + '.png';
+    var forecastTemp = document.createElement('p');
+    forecastTemp.textContent = 'Temp: ' + temp;
+    var forecastWind = document.createElement('p');
+    forecastWind.textContent = 'Wind: ' + wind;
+    var forecastHumidity = document.createElement('p');
+    forecastHumidity.textContent = 'Humidity: ' + humidity;
+
+    // Append the forecast item to the forecast display
+    forecastItem.appendChild(forecastDate);
+    forecastItem.appendChild(forecastIcon);
+    forecastItem.appendChild(forecastTemp);
+    forecastItem.appendChild(forecastWind);
+    forecastItem.appendChild(forecastHumidity);
+    forecastDisplay.appendChild(forecastItem);
+  };
 };
 
-
-
-
-loadCities();
 form.addEventListener('submit', initListeners);
 
