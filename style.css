@@ -12,5 +12,7 @@ header {
 .forecast-item {
   display: block;
   background-color: burlywood;
-  width: auto;
+  width: 50%;
+  border: 1px solid black;
+  padding: 1px;
 }
