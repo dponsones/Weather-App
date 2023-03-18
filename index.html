@@ -4,29 +4,46 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
   <link rel="stylesheet" href="style.css">
   <title>Weather App</title>
 </head>
 <body>
-  <header>
+ 
+  <div class="header">
     <h1>Weather App Dashboard</h1>
-  </header>
-  <div>
-    <h2>Search for A City</h2>
-    <form >
-      <input id="new-city" type="text" >
-      <input type="submit" id="submit-button" value="Search">
-    </form>
   </div>
-  <div id="city-list">
-    <h2>Previous City</h2>
+
+  <div class="columns">
+    <div class="column">
+    </div>
   </div>
-  <div id="current-city">
+
+  <div class="columns is-mobile">
+    <div class="column is-4">
+      <h2 class="title is-5">Search for A City</h2>
+        <form>
+          <input id="new-city" type="text" >
+          <input type="submit" id="submit-button" value="Search">
+        </form>
+        <div id="city-list" class="column">
+          <h2 class="title is-5">Previous City</h2>
+      </div>
+      <div class="column">
+        </div>
+      </div>
+      <div id="current-city" class="column is-7"> 
+      </div>
+    </div>
+  </div> 
+  <div class="columns">
+    <div class="column is-4"></div>
+    <div id="five-day-forecast" class="column is-7" >
+    </div>
   </div>
  
-  <div id="5-day-forecast">
-  </div>
- 
+      
+  
   <script src="script.js"></script>
 </body>
 </html>

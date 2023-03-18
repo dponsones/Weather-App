@@ -3,7 +3,7 @@ var cityList = [];
 var cityHTML = document.getElementById('city-list');
 var cityHTMLText = document.createElement("p");
 var currentWeather = document.getElementById('current-city');
-var forecastDisplay = document.getElementById('5-day-forecast');
+var forecastDisplay = document.getElementById('five-day-forecast');
 var submitButton = document.getElementById('submit-button');
 var APIKey = 'e3280890f73c484ecc8bb0d44ffb9ee0';
 
@@ -19,14 +19,16 @@ function saveCity() {
 function loadCities() {
   console.log("loaded cities", cityList);
   var updatedCityList = JSON.parse(localStorage.getItem('city'));
-  var city;
-  for (let i = 0; i < updatedCityList.length; i++) {
-    city = updatedCityList[i];
-   
-    cityHTMLText.textContent = city;
-    cityHTML.append(cityHTMLText);
-    console.log('current city', city);
-    getWeatherData(city);
+  if (updatedCityList) {
+    var city;
+    for (let i = 0; i < updatedCityList.length; i++) {
+      city = updatedCityList[i];
+
+      cityHTMLText.textContent = city;
+      cityHTML.append(cityHTMLText);
+      console.log('current city', city);
+      getWeatherData(city);
+    }
   }
 };
 
@@ -104,7 +106,7 @@ function getForecastData(lat, lon) {
 // display forecast data to DOM
 
 function displayForecast(data) {
-  var forecastDisplay = document.getElementById('5-day-forecast');
+  var forecastDisplay = document.getElementById('five-day-forecast');
 
   // Clear previous forecast data
   forecastDisplay.innerHTML = '';

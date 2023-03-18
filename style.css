@@ -1,18 +1,26 @@
-header {
+* {
+  margin: 5px;
+}
+
+.header {
   text-align: center;
   color: antiquewhite;
   background-color: blue;
   padding: 1px;
   border: 2px solid black ;
 }
-#city-list h2 {
+#city-list {
   font-size: 17px;
+  border: 1px solid black
 }
 
 .forecast-item {
-  display: block;
   background-color: burlywood;
-  width: 50%;
   border: 1px solid black;
   padding: 1px;
 }
+
+#current-city {
+  border: 1px solid black;
+}
+
